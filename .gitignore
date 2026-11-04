@@ -1,0 +1,15 @@
+# dbt build output (regenerated every run)
+target/
+dbt_packages/
+logs/
+
+# local database and exports (anyone can rebuild them with `dbt build`)
+*.duckdb
+*.duckdb.wal
+exports/
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.user.yml

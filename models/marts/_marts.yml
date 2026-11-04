@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Calendar table, one row per day from 2025-01-01 to 2026-12-31.
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]
+
+  # TODO (Week 2): add dim_users, fct_subscriptions, fct_payments,
+  # fct_weekly_activity here, each with a description and tests.

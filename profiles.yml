@@ -1,0 +1,11 @@
+# Connection settings. dbt looks for this file in the folder you run it from.
+# DuckDB is a free database that lives in a single file on your laptop,
+# so there is no server, login or password to set up.
+
+lernly:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: lernly.duckdb   # this file is created on your first run
+      threads: 4

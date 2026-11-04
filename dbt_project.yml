@@ -1,0 +1,38 @@
+# The main settings file for a dbt project.
+# Think of it like the "Options" screen of a .pbix file.
+
+name: lernly
+version: "1.0.0"
+profile: lernly          # which connection to use (defined in profiles.yml)
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+
+clean-targets: ["target", "dbt_packages"]
+
+seeds:
+  lernly:
+    +schema: raw
+    # Load every raw column as text, exactly as it arrived.
+    # Cleaning and typing happens in the staging models, not here.
+    raw_users:
+      +column_types: {signup_date: varchar, country: varchar, onboarding_variant: varchar}
+    raw_payments:
+      +column_types: {amount_eur: varchar, paid_at: varchar}
+    raw_subscriptions:
+      +column_types: {started_at: varchar, cancelled_at: varchar, price_eur: varchar}
+    raw_events:
+      +column_types: {event_at: varchar}
+    raw_weekly_activity:
+      +column_types: {week_start: varchar}
+
+models:
+  lernly:
+    staging:
+      +schema: staging
+      +materialized: view    # views: cheap, always fresh
+    marts:
+      +schema: marts
+      +materialized: table   # tables: what Power BI will read
