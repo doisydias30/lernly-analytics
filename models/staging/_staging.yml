@@ -45,10 +45,10 @@ models:
               arguments:
                 values: [succeeded, failed, refunded]
                 
-  - name: stg_subscriptions
-    description: One row per subscription, with proper types and an is_active flag.
+  - name: stg_events
+    description: One row per event, with proper types and an event date to group by date.
     columns:
-      - name: subscription_id
+      - name: event_id
         data_tests: [unique, not_null]
       - name: user_id
         data_tests:
@@ -56,8 +56,10 @@ models:
               arguments:
                 to: ref('stg_users')
                 field: user_id
-      - name: plan
+      - name: event_name
         data_tests:
           - accepted_values:
               arguments:
-                values: [monthly, annual]
+                values: [signup, onboarding_completed,paywall_viewed,trial_started,signup]
+
+                
