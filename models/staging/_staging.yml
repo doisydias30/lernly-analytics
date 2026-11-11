@@ -62,4 +62,15 @@ models:
               arguments:
                 values: [signup, onboarding_completed,paywall_viewed,trial_started,signup]
 
+  - name: stg_weekly_activity
+    description: One row per user per active week, with a surrogate key activity_id (user_id + week_start).
+    columns:
+      - name: activity_id
+        data_tests: [unique, not_null]
+      - name: user_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_users')
+                field: user_id
                 
