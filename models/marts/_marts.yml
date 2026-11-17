@@ -9,3 +9,13 @@ models:
 
   # TODO (Week 2): add dim_users, fct_subscriptions, fct_payments,
   # fct_weekly_activity here, each with a description and tests.
+
+  - name: dim_users
+    description: One row per user, enriched with signup month, subscription plan, has_subscribed and active weeks.
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+      - name: has_subscribed
+        data_tests: [not_null]
+      - name: active_weeks
+        data_tests: [not_null]
